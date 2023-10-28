@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weight input</title>
+    <link rel="stylesheet" type="text/css" href="static/Fatblob_style.css">
+<div>
+    <a href="/">Home</a>
+    <a href="/Progress">Progress</a>
+    <a href="/Biometrics">Biometrics</a>
+</div>
+</head>
+<body>
+    <h1>Fat Blobs</h1>
+    <form method='POST' action="/Weight_input">
+        <label for="Name" style="display: none;">Name:</label>
+        <img src="static/Name.png" alt="Name" id="Name-image">
+        <select name="Name" id="Name" onchange="populateHeightField()">
+            <option value="Max">Max</option>
+            <option value="Charly">Charly</option>
+            <option value="Pamela">Pamela</option>
+            <option value="Ray">Ray</option>
+            <option value="Jo">Jo</option>
+        </select>
+        <script>
+            function populateHeightField() {
+                var selectedName = document.getElementById("Name").value;
+                if (height_data.hasOwnProperty(selectedName)) {
+                    document.getElementById("Height").value = height_data[selectedName];
+                } else {
+                    document.getElementById("Height").value = "";
+                }
+            }
+        </script>
+        <label for="Weight" style="display: none;">Weight (kg):</label>
+        <img src="static/Weight.png" alt="Weight" id="Weight-image">
+        <input type="number" id="Weight" Name="Weight" step="0.01" required><br>
+    
+        <label for="Height" style="display: none;">Height (cm):</label>
+        <img src="static/height.png" alt="Height" id="Height-image">
+        <input type="number" id="Height" Name="Height" step="0.01" required><br>
+    
+        <label for="date" style="display: none;">Date:</label>
+        <img src="static/date.png" alt="Date" id="date-image">
+        <input type="date" id="Date" Name="Date" required>
+    
+        <script>
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0');
+            var yyyy = today.getFullYear();
+    
+            today = yyyy + '-' + mm + '-' + dd;
+            document.getElementById("Date").value = today;
+        </script>
+    
+        <input type="submit" value="Save Weight">
+    </form>
+    
+    <div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class="flash">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>

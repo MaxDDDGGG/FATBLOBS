@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Page Title</title>
+    <link rel="stylesheet" type="text/css" href="static/Fatblob_style.css">
+</head>
+<body>
+    <div style="display: none;">
+        <a href="/Weight_input">Weight input</a>
+        <a href="/Progress">Progress</a>
+        <a href="/Biometrics">Biometrics</a>
+    </div>
+    <div class="animation-text">
+        <p>
+            <span>F</span>
+            <span>A</span>
+            <span>T</span>
+            <br>
+            <span>B</span>
+            <span>L</span>
+            <span>O</span>
+            <span>B</span>
+            <span>S</span>
+        </p>
+    </div>
+</body>
+<form id="passcode-form" class="passcode-form">
+    <input type="password" id="passcode" class="passcode-input" placeholder="Enter passcode">
+    <button type="submit" class="passcode-submit" value="Login">Login</button>
+</form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const passcodeForm = document.querySelector("#passcode-form");
+        const navigation = document.querySelector("div[style='display: none;']");
+
+        passcodeForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const passcodeInput = passcodeForm.querySelector("#passcode");
+            const passcodeValue = passcodeInput.value;
+
+            if (passcodeValue === 'I AM A FAT BLOB!') {
+                navigation.style.display = "block";
+            }
+        });
+    });
+</script>
+</html>
